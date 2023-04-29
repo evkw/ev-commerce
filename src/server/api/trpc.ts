@@ -18,8 +18,6 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 
 import { prisma } from "~/server/db";
 
-type CreateContextOptions = {
-};
 
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use it, you can export
@@ -31,7 +29,7 @@ type CreateContextOptions = {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
+const createInnerTRPCContext = () => {
   return {
     prisma,
   };
@@ -43,13 +41,9 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
-
+export const createTRPCContext = (opts: CreateNextContextOptions) => {
   // Get the session from the server using the getServerSession wrapper function
-
-  return createInnerTRPCContext({
-  });
+  return createInnerTRPCContext();
 };
 
 /**
